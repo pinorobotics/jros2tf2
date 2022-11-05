@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 /**
- * Java module which allows to interact with <a href="http://wiki.ros.org/tf2">TF2</a> in ROS1
+ * Java module which allows to interact with <a href="http://wiki.ros.org/tf2">TF2</a> in ROS2
  * (Robot Operating System).
  *
  * <p>For usage examples see <a href="http://pinoweb.freetzi.com/jrostf2">Documentation</a>
