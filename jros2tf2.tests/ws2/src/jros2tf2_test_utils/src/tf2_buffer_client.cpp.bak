@@ -1,0 +1,52 @@
+/**
+ * Alternative version of tf2_buffer_client.cpp which is based on tf2_ros::BufferClient.
+ * Ideally it should be used instead of current one where we call TF2 Actions directly.
+ * Unfortunately it did not work and fails with:
+ *
+ * terminate called after throwing an instance of 'tf2::TimeoutException'
+ *  what():  Did not receive the goal response for the goal sent to the action server.
+ *  Something is likely wrong with the server.
+ *
+ * It seems to be an issue on BufferClient itself (Humble Hawksbill) as from Wireshark and
+ * buffer_server output we can see that task is completed much earlier than timeout occur.
+ *
+ */
+
+#include <functional>
+#include <future>
+#include <memory>
+#include <string>
+#include <sstream>
+
+#include "rclcpp/rclcpp.hpp"
+#include "tf2_ros/buffer_client.h"
+
+class MyNode : public rclcpp::Node
+{
+public:
+    MyNode() : Node("tf2_buffer_client")
+    {
+      RCLCPP_INFO(this->get_logger(), "Client created");
+      timer_ = this->create_wall_timer(
+            std::chrono::milliseconds(2000),
+            std::bind(&MyNode::timerCallback, this));
+      bufferClient = std::make_shared<tf2_ros::BufferClient>(this, "tf2_buffer_server", 1/*check_frequency*/, tf2::durationFromSec(10)/*padding*/);
+    }
+private:
+    void timerCallback()
+    {
+        RCLCPP_INFO(this->get_logger(), "Hello from ROS2");
+        auto res = bufferClient->lookupTransform("panda_link0", "panda_hand",  tf2::timeFromSec(0)/*tf2::get_now()*, tf2::durationFromSec(3.0)*/);
+    }
+    rclcpp::TimerBase::SharedPtr timer_;
+    std::shared_ptr<tf2_ros::BufferClient> bufferClient;
+};
+
+int main(int argc, char ** argv)
+{
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<MyNode>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}

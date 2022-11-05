@@ -1,0 +1,4 @@
+// list of subprojects to publish to Sonatype repo
+
+include 'jros2tf2'
+project(':jros2tf2').projectDir = new File(rootDir, '../jros2tf2')
