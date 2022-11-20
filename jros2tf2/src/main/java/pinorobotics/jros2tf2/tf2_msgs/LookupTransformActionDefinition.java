@@ -20,7 +20,7 @@ package pinorobotics.jros2tf2.tf2_msgs;
 import pinorobotics.jros2actionlib.actionlib_msgs.Action2Definition;
 import pinorobotics.jros2actionlib.actionlib_msgs.Action2GetResultRequestMessage;
 import pinorobotics.jros2actionlib.actionlib_msgs.Action2GoalMessage;
-import pinorobotics.jrosactionlib.msgs.ActionResultMessage;
+import pinorobotics.jros2actionlib.actionlib_msgs.Action2ResultMessage;
 import pinorobotics.jrostf2.tf2_msgs.LookupTransformGoalMessage;
 
 /**
@@ -35,7 +35,7 @@ public class LookupTransformActionDefinition
     }
 
     @Override
-    public Class<? extends ActionResultMessage<LookupTransformResultMessage>>
+    public Class<? extends Action2ResultMessage<LookupTransformResultMessage>>
             getActionResultMessage() {
         return LookupTransformActionResultMessage.class;
     }

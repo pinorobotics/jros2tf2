@@ -22,16 +22,21 @@ eclipse.classpath.file {
 }
 
 dependencies {
-    implementation 'io.github.pinorobotics:jrostf2:2.0'
-    implementation 'io.github.lambdaprime:jros2client:1.0'
-    implementation 'io.github.lambdaprime:jros2messages:1.0'
-    implementation 'io.github.pinorobotics:jros2actionlib:1.0'
+    def jros2client = 'io.github.lambdaprime:jros2client:2.0-SNAPSHOT'
+    def jros2actionlib = 'io.github.pinorobotics:jros2actionlib:2.0-SNAPSHOT'
+    def jros2messages = 'io.github.lambdaprime:jros2messages:2.0-SNAPSHOT'
+    def jrostf2 = 'io.github.pinorobotics:jrostf2:3.0-SNAPSHOT'
+
+    implementation "${jrostf2}"
+    implementation "${jros2client}"
+    implementation "${jros2actionlib}"
+    implementation "${jros2messages}"
 
     // transitively export following dependency to tests project
-    apiElements 'io.github.pinorobotics:jrostf2:2.0'
-    apiElements 'io.github.lambdaprime:jros2client:1.0'
-    apiElements 'io.github.lambdaprime:jros2messages:1.0'
-    apiElements 'io.github.pinorobotics:jros2actionlib:1.0'
+    apiElements "${jrostf2}"
+    apiElements "${jros2client}"
+    apiElements "${jros2actionlib}"
+    apiElements "${jros2messages}"
 }
 
 jar { 

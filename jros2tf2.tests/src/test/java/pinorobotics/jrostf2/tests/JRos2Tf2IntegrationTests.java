@@ -29,15 +29,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pinorobotics.jros2tf2.JRos2Tf2;
 import pinorobotics.jros2tf2.JRos2Tf2Factory;
-import pinorobotics.jrostf2.JRosTf2;
 
 public class JRos2Tf2IntegrationTests {
 
     private static final ResourceUtils resourceUtils = new ResourceUtils();
 
     private JRos2Client client;
-    private JRosTf2 tf2;
+    private JRos2Tf2 tf2;
 
     @BeforeAll
     public static void setupAll() {

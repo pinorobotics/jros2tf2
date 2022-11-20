@@ -21,21 +21,21 @@ import id.jrosmessages.MessageMetadata;
 import id.jrosmessages.RosInterfaceType;
 import id.xfunction.XJson;
 import java.util.Objects;
-import pinorobotics.jrosactionlib.actionlib_msgs.StatusType;
-import pinorobotics.jrosactionlib.msgs.ActionResultMessage;
+import pinorobotics.jros2actionlib.actionlib_msgs.Action2ResultMessage;
+import pinorobotics.jros2actionlib.actionlib_msgs.StatusType;
 
 /** Definition for tf2_msgs/LookupTransformActionResult */
 @MessageMetadata(
         name = LookupTransformActionResultMessage.NAME,
         interfaceType = RosInterfaceType.ACTION)
 public class LookupTransformActionResultMessage
-        implements ActionResultMessage<LookupTransformResultMessage> {
+        implements Action2ResultMessage<LookupTransformResultMessage> {
 
     static final String NAME = "tf2_msgs/LookupTransformActionResult";
 
     public byte status;
 
-    public LookupTransformResultMessage result; // = new LookupTransformResultMessage();
+    public LookupTransformResultMessage result = new LookupTransformResultMessage();
 
     public LookupTransformActionResultMessage withStatus(byte status) {
         this.status = status;
