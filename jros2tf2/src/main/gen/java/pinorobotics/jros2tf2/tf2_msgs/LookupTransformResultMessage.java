@@ -26,7 +26,9 @@ import pinorobotics.jrostf2.impl.LookupTransformResult;
 import pinorobotics.jrostf2.tf2_msgs.TF2ErrorMessage;
 
 /** Definition for tf2_msgs/LookupTransformResult */
-@MessageMetadata(name = LookupTransformResultMessage.NAME)
+@MessageMetadata(
+        name = LookupTransformResultMessage.NAME,
+        fields = {"transform", "error"})
 public class LookupTransformResultMessage implements Message, LookupTransformResult {
 
     static final String NAME = "tf2_msgs/LookupTransformResult";

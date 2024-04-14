@@ -27,6 +27,7 @@ import pinorobotics.jros2actionlib.actionlib_msgs.StatusType;
 /** Definition for tf2_msgs/LookupTransformActionResult */
 @MessageMetadata(
         name = LookupTransformActionResultMessage.NAME,
+        fields = {"status", "result"},
         interfaceType = RosInterfaceType.ACTION)
 public class LookupTransformActionResultMessage
         implements Action2ResultMessage<LookupTransformResultMessage> {
