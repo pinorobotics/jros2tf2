@@ -79,29 +79,48 @@ javadoc {
   }
   options.addMultilineStringsOption("-module-source-path").value = moduleSourcePath.stream().map(Object::toString).toList()
   exclude "${zzNamespace}/${zzName}/impl/**"
+  // Gradle javadoc considers all from java sourceSet only
+  // This means that doc-files/* are excluded which is not
+  // very compliant to javadoc https://docs.oracle.com/en/java/javase/13/javadoc/source-files.html
+  // to fix that we copy doc-files/* manually
+  doLast {
+    copy {
+      from "${zzName}/src/main/java"
+      into "$project.docsDir/javadoc/${zzName}"
+      include "**/doc-files/*"
+    }
+  }
 }
 
 def packageDir = "$buildDir/package/${zzName}"
 
 task createRelease(type: Zip) {
-    archiveFileName = "$releaseFileName"
-    destinationDirectory = file("$projectDir/release")
-    from file("$packageDir/..")
+  archiveFileName = "$releaseFileName"
+  destinationDirectory = file("$projectDir/release")
+  from file("$packageDir/..")
 }
 
 task copyLibs(type: Copy) {
-    from configurations.runtimeClasspath
-    from jar.archiveFile
-    into "${packageDir}/libs"
+  from configurations.runtimeClasspath
+  from jar.archiveFile
+  into "${packageDir}/libs"
 }
 
-task createPackage(type: Copy, dependsOn: [copyLibs]) {
-    from "${project.rootDir}/README.md"
-    from "${project.rootDir}/LICENSE-2.0.txt"
-    into packageDir
+task copyExamples(type: Copy) {
+  from("${project.rootDir}/${zzName}.examples/generic/src") {
+    include "**"
+  }
+  into "${packageDir}/examples"
+}
+
+task createPackage(type: Copy, dependsOn: [copyLibs, copyExamples]) {
+  from "${project.rootDir}/README.md"
+  from "${project.rootDir}/LICENSE-2.0.txt"
+  into packageDir
 }
 
 task cleanRelease(type: Delete) {
+  delete "$packageDir"
   delete "$projectDir/release/*-SNAPSHOT.zip"
 }
 
