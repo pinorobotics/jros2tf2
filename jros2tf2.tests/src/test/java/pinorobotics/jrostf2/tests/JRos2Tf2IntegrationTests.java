@@ -32,6 +32,9 @@ import org.junit.jupiter.api.Test;
 import pinorobotics.jros2tf2.JRos2Tf2;
 import pinorobotics.jros2tf2.JRos2Tf2Factory;
 
+/**
+ * @author aeon_flux aeon_flux@eclipso.ch
+ */
 public class JRos2Tf2IntegrationTests {
 
     private static final ResourceUtils resourceUtils = new ResourceUtils();

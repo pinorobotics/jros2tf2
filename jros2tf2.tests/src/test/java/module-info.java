@@ -24,6 +24,9 @@ open module jrostf2.tests {
     requires jros2tf2;
     requires id.xfunction;
     requires org.junit.jupiter.api;
+    requires jrosmessages.tests;
+    requires jros2messages;
+    requires jrosmessages;
 
     exports pinorobotics.jrostf2.tests;
 }
