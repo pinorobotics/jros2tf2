@@ -14,7 +14,7 @@ Gradle:
 
 ```
 dependencies {
-  implementation 'io.github.pinorobotics:jros2tf2:2.0'
+  implementation 'io.github.pinorobotics:jros2tf2:3.0'
 }
 ```
 
