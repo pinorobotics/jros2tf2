@@ -17,6 +17,7 @@
  */
 package pinorobotics.jros2tf2.tf2_msgs;
 
+import id.jrosmessages.MessageDescriptor;
 import pinorobotics.jros2actionlib.actionlib_msgs.Action2Definition;
 import pinorobotics.jros2actionlib.actionlib_msgs.Action2GetResultRequestMessage;
 import pinorobotics.jros2actionlib.actionlib_msgs.Action2GoalMessage;
@@ -30,18 +31,20 @@ public class LookupTransformActionDefinition
         implements Action2Definition<LookupTransformGoalMessage, LookupTransformResultMessage> {
 
     @Override
-    public Class<? extends Action2GoalMessage<LookupTransformGoalMessage>> getActionGoalMessage() {
-        return LookupTransformActionGoalMessage.class;
+    public MessageDescriptor<? extends Action2GoalMessage<LookupTransformGoalMessage>>
+            getActionGoalMessage() {
+        return new MessageDescriptor<>(LookupTransformActionGoalMessage.class);
     }
 
     @Override
-    public Class<? extends Action2ResultMessage<LookupTransformResultMessage>>
+    public MessageDescriptor<? extends Action2ResultMessage<LookupTransformResultMessage>>
             getActionResultMessage() {
-        return LookupTransformActionResultMessage.class;
+        return new MessageDescriptor<>(LookupTransformActionResultMessage.class);
     }
 
     @Override
-    public Class<? extends Action2GetResultRequestMessage> getActionResultRequestMessage() {
-        return LookupTransformActionGetResultRequestMessage.class;
+    public MessageDescriptor<? extends Action2GetResultRequestMessage>
+            getActionResultRequestMessage() {
+        return new MessageDescriptor<>(LookupTransformActionGetResultRequestMessage.class);
     }
 }

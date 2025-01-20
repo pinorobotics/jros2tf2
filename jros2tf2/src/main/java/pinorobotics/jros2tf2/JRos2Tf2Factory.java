@@ -20,7 +20,7 @@ package pinorobotics.jros2tf2;
 import id.jros2client.JRos2Client;
 import id.jrosclient.RosVersion;
 import id.xfunction.Preconditions;
-import pinorobotics.jros2actionlib.JRos2ActionClientFactory;
+import pinorobotics.jros2actionlib.JRos2ActionFactory;
 import pinorobotics.jros2tf2.tf2_msgs.LookupTransformActionDefinition;
 import pinorobotics.jrostf2.impl.JRosTf2Constants;
 
@@ -31,7 +31,7 @@ import pinorobotics.jrostf2.impl.JRosTf2Constants;
  */
 public class JRos2Tf2Factory {
 
-    private JRos2ActionClientFactory actionClientFactory = new JRos2ActionClientFactory();
+    private JRos2ActionFactory actionFactory = new JRos2ActionFactory();
 
     /**
      * Creates a new instance of the client which will interact with TF2 Buffer Server
@@ -42,7 +42,7 @@ public class JRos2Tf2Factory {
         Preconditions.isTrue(
                 client.getSupportedRosVersion().contains(RosVersion.ROS2), "Requires ROS2 client");
         return new JRos2Tf2(
-                actionClientFactory.createClient(
+                actionFactory.createClient(
                         client,
                         new LookupTransformActionDefinition(),
                         JRosTf2Constants.TF2_BUFFER_SERVER_NAME));

@@ -43,6 +43,7 @@ public class LookupTransformActionResultMessage
         return this;
     }
 
+    @Override
     public LookupTransformActionResultMessage withResult(LookupTransformResultMessage result) {
         this.result = result;
         return this;
@@ -74,5 +75,11 @@ public class LookupTransformActionResultMessage
     @Override
     public StatusType getStatus() {
         return StatusType.values()[status];
+    }
+
+    @Override
+    public Action2ResultMessage<LookupTransformResultMessage> withStatus(StatusType status) {
+        this.status = (byte) status.ordinal();
+        return this;
     }
 }
